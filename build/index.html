@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>build your own react</title>
+    <style>
+      pre {
+        background-color: gray;
+        color: white;
+        padding: 14px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Step II: The render Function</h1>
+    <pre>
+        function render(element, container) {
+          const dom =
+            element.type == "TEXT_ELEMENT"
+              ? document.createTextNode("")
+              : document.createElement(element.type);
+          const isProperty = (key) => key !== "children";
+          Object.keys(element.props)
+            .filter(isProperty)
+            .forEach((name) => {
+              dom[name] = element.props[name];
+            });
+          element.props.children.forEach((child) => render(child, dom));
+          container.appendChild(dom);
+        }
+      </pre
+    >
+    <div id="root"></div>
+    <script src="../src/step-2.js"></script>
+  </body>
+</html>
